@@ -1,7 +1,9 @@
-import json
-import urllib.request
 import time
 
+from data import jp_en, get_examples
+from formatting import remove_fromtext
+from requests import search_notes, update_note, add_tag
+from text_and_speech import text_to_speech
 
 ########################################################################################################################
 counter = time.time()
@@ -10,110 +12,6 @@ def count(func_took='function took'):
 
 
 ########################################################################################################################
-
-def request(action, **params):
-    return {'action': action, 'params': params, 'version': 6}
-
-
-def invoke(action, **params):
-
-    requestJson = json.dumps(request(action, **params)).encode('utf-8')
-    response = json.load(urllib.request.urlopen(urllib.request.Request('http://localhost:8765', requestJson)))
-    if len(response) != 2:
-        raise Exception('response has an unexpected number of fields')
-    if 'error' not in response:
-        raise Exception('response is missing required error field')
-    if 'result' not in response:
-        raise Exception('response is missing required result field')
-    if response['error'] is not None:
-        pass
-        # raise Exception(response['error'])
-    return response['result']
-
-
-def get_sentence(sentence):
-    s = sentence.split('\t')  # 1 for japanese sentence, 3 for english translation
-    return [s[1], s[3]]  # [hi, oi]
-
-
-def remove_fromtext(text,remove=["&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<.*?>"], remove_furigana=True):
-    ''''removes parts of the text from string using regex'''
-    import re  # IMPORTS REGEX MODULE
-    text = text.replace("<rt>", "[").replace("</rt>", "]")
-    replace = []
-    if len(remove) > 0:
-        for r in ["&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<.*?>"]:
-            replace += [*set(re.findall(r, text))]  # set removes duplicates from list. Went from hundreds to a few strs
-        for r in replace:
-            text = text.replace(r, '')
-    if remove_furigana:
-        for r in re.findall("\[.*?\]", text):
-            text = text.replace(r, '')
-    return text
-
-
-########################################################################################################################
-def find_language(text):
-    from googletrans import Translator as gT
-    lang = gT().detect(text).lang
-    # print(lang)
-    return lang
-
-def text_to_speech(text, save_path):
-    from gtts import gTTS
-    from time import sleep as s
-    tts = gTTS(text, lang=find_language(text))
-    path = rf"{save_path}\{text.replace(' ', '_')[:20]}.mp3"
-    tts.save(path)
-    # s(5)
-    return path
-
-########################################################################################################################
-
-
-########################################################################################################################
-########################################################################################################################
-########################################################################################################################
-def create_deck(deck_name):
-    invoke('createDeck', deck=deck_name)
-
-
-def get_decks():
-    print('got list of decks: {}'.format(invoke('deckNames')))
-
-
-def search_notes(query_search):
-    query_results = invoke('findNotes', query=query_search)
-    return invoke('notesInfo', notes=query_results)
-
-
-def update_note(note_ID, update_dict):
-    invoke('updateNoteFields', note={'id': note_ID, 'fields': update_dict})
-
-
-def add_tag(note_ID, tag):
-    invoke('addTags', notes=[note_ID], tags=tag)
-
-########################################################################################################################
-########################################################################################################################
-########################################################################################################################
-
-jp_en = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-English - 2022-10-26.txt"
-jp_fr = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-French - 2022-10-27.txt"
-jp_sp = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-Spanish - 2022-10-27.txt"
-jp_kr = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-Korean - 2022-10-27.txt"
-jp_pt = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-Portuguese - 2022-10-27.txt"
-jp_es = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-Esperanto - 2022-10-27.txt"
-jp_ge = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-German - 2022-10-27.txt"
-jp_cn = r"D:\Users\Igor\Downloads\Sentence pairs in Japanese-Mandarin Chinese - 2022-10-27.txt"
-
-
-def get_examples(word, database, word_limit=None, shuffle=False):
-    import random
-    database = open(database, encoding="utf8").readlines()
-    random.shuffle(database) if shuffle else database.sort(key=len)  # shuffles list of lines.
-    matching_sentences = [get_sentence(lines) for lines in database if all(w in lines for w in word.split(', '))]
-    return matching_sentences[0:word_limit+1] if word_limit is not None else matching_sentences
 
 
 def edit_anki_note(card, baselanguage='English', language='Word', sentence_field='Sentence', translation_field='English', audio_field='Sentence Audio'):
