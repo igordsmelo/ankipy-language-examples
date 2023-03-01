@@ -12,3 +12,9 @@ def remove_fromtext(text,remove=["&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<
         for r in re.findall("\[.*?\]", text):
             text = text.replace(r, '')
     return text
+
+
+def split_example(sentence):
+    """Formats individual sentence and its translation."""
+    s = sentence.split('\t')  # 1 for original, 3 for translation
+    return [s[1], s[3]]  # [hi, oi]
