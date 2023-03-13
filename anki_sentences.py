@@ -2,7 +2,7 @@ import time
 
 from data import jp_en, get_examples
 from formatting import remove_fromtext
-from requests import search_notes, update_note, add_tag
+from url_requests import search_notes, update_note, add_tag
 from text_and_speech import text_to_speech
 
 ############################################################ performance analysis.
