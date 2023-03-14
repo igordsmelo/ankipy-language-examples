@@ -1,5 +1,4 @@
 import time
-
 from data import jp_en, get_examples
 from formatting import remove_fromtext
 from url_requests import search_notes, update_note, add_tag
@@ -7,13 +6,14 @@ from text_and_speech import text_to_speech
 
 ############################################################ performance analysis.
 counter = time.time()
+
+
 def count(func_took='function took'):
     print(f'{func_took}: {time.time() - counter}')
 ############################################################
 
 
-
-def edit_anki_note(card, baselanguage='English', language='Word', sentence_field='Sentence', translation_field='English', audio_field='Sentence Audio'):
+def edit_anki_note(card, language='Word', sentence_field='Sentence', translation_field='English', audio_field='Sentence Audio'):
     print(f'\n\n\n############################################################')
     count('starting editing')
 
@@ -55,11 +55,12 @@ def edit_anki_note(card, baselanguage='English', language='Word', sentence_field
 
 
 def filter_note_by_tag(notes, include=None, exclude=None):
+    filtered_notes = notes
     if include:
-        notes = [n for n in notes if include in n['tags']]
+        filtered_notes = [n for n in notes if include in n['tags']]
     if exclude:
-        notes = [n for n in notes if exclude not in n['tags']]
-    return notes
+        filtered_notes = [n for n in notes if exclude not in n['tags']]
+    return filtered_notes
 
 
 queries = ["deck:Default::Downloaded::JLPT::N5", "deck:Default::Downloaded::JLPT::N4", "deck:Default::Downloaded::JLPT::N3", "deck:Default::Downloaded::JLPT::N2", "deck:Default::Downloaded::JLPT::N1"]
