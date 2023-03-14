@@ -10,7 +10,6 @@ def text_to_speech(text, save_path):
     tts = gTTS(text, lang=find_language(text))
     path = rf"{save_path}\{text.replace(' ', '_')[:20]}.mp3"
     tts.save(path)
-    # s(5)
     return path
 
 ############################################################
