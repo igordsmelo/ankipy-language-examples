@@ -1,6 +1,6 @@
 from formatting import split_example
 
-# todo: get data from tatoeba if not found
+# TODO: get data from tatoeba if not found
 jp_en = r"../anki-language-samples/langs/Sentence pairs in Japanese-English - 2022-10-26.txt"
 jp_fr = r"../anki-language-samples/langs/Sentence pairs in Japanese-French - 2022-10-27.txt"
 jp_sp = r"../anki-language-samples/langs/Sentence pairs in Japanese-Spanish - 2022-10-27.txt"

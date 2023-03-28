@@ -1,8 +1,9 @@
 import time
+
 from data import jp_en, get_examples
 from formatting import remove_fromtext
-from url_requests import search_notes, update_note, add_tag
 from text_and_speech import text_to_speech
+from url_requests import search_notes, update_note, add_tag
 
 ############################################################ performance analysis.
 counter = time.time()
@@ -76,4 +77,4 @@ for q in queries:  # individual query terms
 
 # edit_anki_note(language='Expression', sentence_field='Japanese')
 
-#todo: change parameters
+# TODO: change parameters
