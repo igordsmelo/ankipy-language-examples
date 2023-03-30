@@ -73,8 +73,3 @@ for q in queries:  # individual query terms
     for note in notes:  # individual notes
           edit_anki_note(note, language='Expression', sentence_field=target_sentence_field)  # starts editing it
     print(f'finished fucking {q}')
-
-
-# edit_anki_note(language='Expression', sentence_field='Japanese')
-
-# TODO: change parameters
