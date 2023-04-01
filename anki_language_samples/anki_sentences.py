@@ -14,7 +14,8 @@ def count(func_took='function took'):
 ############################################################
 
 
-def edit_anki_note(card, language='Word', sentence_field='Sentence', translation_field='English', audio_field='Sentence Audio'):
+def edit_anki_note(card, language='Word', sentence_field='Sentence',
+                   translation_field='English', audio_field='Sentence Audio'):
     print(f'\n\n\n############################################################')
     count('starting editing')
 
@@ -64,7 +65,11 @@ def filter_note_by_tag(notes, include=None, exclude=None):
     return filtered_notes
 
 
-queries = ["deck:Default::Downloaded::JLPT::N5", "deck:Default::Downloaded::JLPT::N4", "deck:Default::Downloaded::JLPT::N3", "deck:Default::Downloaded::JLPT::N2", "deck:Default::Downloaded::JLPT::N1"]
+queries = ["deck:Default::Downloaded::JLPT::N5",
+           "deck:Default::Downloaded::JLPT::N4",
+           "deck:Default::Downloaded::JLPT::N3",
+           "deck:Default::Downloaded::JLPT::N2",
+           "deck:Default::Downloaded::JLPT::N1"]
 target_sentence_field = 'Japanese'
 for q in queries:  # individual query terms
     notes = filter_note_by_tag(search_notes(q), exclude='AnkiPy') # searches query, filters it, assign to var
