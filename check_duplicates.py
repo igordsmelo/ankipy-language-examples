@@ -20,5 +20,9 @@ duplicate = set(six_k) & set(main)
 duplicate = list(duplicate)
 
 print(duplicate[0])
+print(six_k[duplicate[0]], main[duplicate[0]])
+
+six_k_note = [n for n in SIX_K if n['noteId'] == six_k[duplicate[0]]][0]
+main_note = [n for n in MAIN if n['noteId'] == main[duplicate[0]]][0]
 
 # duplicates = [notes['Word'] for notes in 6K if notes['Word'] in Main]
