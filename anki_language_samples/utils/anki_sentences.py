@@ -22,7 +22,6 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence',
     l = card['fields'][language.title()]['value']
     sf = card['fields'][sentence_field]['value']
     print(f'sf = {sf}')
-
     try:
         # print(f"{language}:{l} \n {baselanguage}: {bl} \n {sentence_field}:{sf}")
         l = remove_fromtext(l, remove_furigana=True)  # l is a clean string
