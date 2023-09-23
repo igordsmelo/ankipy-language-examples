@@ -46,7 +46,8 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence',
         count('editing notes now')
         update_note(card['noteId'], updated_fields)
         add_tag(card['noteId'], 'AnkiPy')  # invoke('addTags', notes=[ID, ID], tags='AnkiPy')
-        ###########################################################################
+        ####
+        ########################################################################
         count(f'{l} changed')
         print(f'############################################################')
     except :
