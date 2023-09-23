@@ -1,4 +1,4 @@
-from anki_language_samples import url_requests
+from anki_language_samples.utils import url_requests
 
 SIX_K = url_requests.search_notes("tag:Languages::Japanese::Core6K")
 MAIN = url_requests.search_notes("tag:Languages::Japanese::Main")
