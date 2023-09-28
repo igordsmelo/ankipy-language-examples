@@ -1,8 +1,9 @@
 import time
+
 from data import jp_en, get_examples
 from formatting import remove_fromtext
-from url_requests import search_notes, update_note, add_tag
 from text_and_speech import text_to_speech
+from url_requests import update_note, add_tag
 
 ############################################################ performance analysis.
 counter = time.time()
@@ -13,14 +14,14 @@ def count(func_took='function took'):
 ############################################################
 
 
-def edit_anki_note(card, language='Word', sentence_field='Sentence', translation_field='English', audio_field='Sentence Audio'):
+def edit_anki_note(card, language='Word', sentence_field='Sentence',
+                   translation_field='English', audio_field='Sentence Audio'):
     print(f'\n\n\n############################################################')
     count('starting editing')
 
     l = card['fields'][language.title()]['value']
     sf = card['fields'][sentence_field]['value']
     print(f'sf = {sf}')
-
     try:
         # print(f"{language}:{l} \n {baselanguage}: {bl} \n {sentence_field}:{sf}")
         l = remove_fromtext(l, remove_furigana=True)  # l is a clean string
@@ -44,7 +45,8 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence', translation
         count('editing notes now')
         update_note(card['noteId'], updated_fields)
         add_tag(card['noteId'], 'AnkiPy')  # invoke('addTags', notes=[ID, ID], tags='AnkiPy')
-        ###########################################################################
+        ####
+        ########################################################################
         count(f'{l} changed')
         print(f'############################################################')
     except :
@@ -63,17 +65,3 @@ def filter_note_by_tag(notes, include=None, exclude=None):
     return filtered_notes
 
 
-queries = ["deck:Default::Downloaded::JLPT::N5", "deck:Default::Downloaded::JLPT::N4", "deck:Default::Downloaded::JLPT::N3", "deck:Default::Downloaded::JLPT::N2", "deck:Default::Downloaded::JLPT::N1"]
-target_sentence_field = 'Japanese'
-for q in queries:  # individual query terms
-    notes = filter_note_by_tag(search_notes(q), exclude='AnkiPy') # searches query, filters it, assign to var
-    notes = [n for n in notes if not n['fields'][target_sentence_field]['value']]
-    print(f'there are {len(notes)} notes to edit')
-    for note in notes:  # individual notes
-          edit_anki_note(note, language='Expression', sentence_field=target_sentence_field)  # starts editing it
-    print(f'finished fucking {q}')
-
-
-# edit_anki_note(language='Expression', sentence_field='Japanese')
-
-#todo: change parameters

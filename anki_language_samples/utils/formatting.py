@@ -1,4 +1,4 @@
-def remove_fromtext(text,remove=["&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<.*?>"], remove_furigana=True):
+def remove_fromtext(text, remove=("&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<.*?>"), remove_furigana=True):
     ''''removes parts of the text from string using regex'''
     import re  # IMPORTS REGEX MODULE
     text = text.replace("<rt>", "[").replace("</rt>", "]")
@@ -9,7 +9,7 @@ def remove_fromtext(text,remove=["&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<
         for r in replace:
             text = text.replace(r, '')
     if remove_furigana:
-        for r in re.findall("\[.*?\]", text):
+        for r in re.findall("\[.*?]", text):
             text = text.replace(r, '')
     return text
 
