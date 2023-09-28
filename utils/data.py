@@ -1,6 +1,8 @@
-from formatting import split_example
+# from formatting import split_example
+# from script_ankilangsamples.utils import anki_sentences
 
 # TODO: get data from tatoeba if not found
+# TODO: Fix relative path
 jp_en = r"../script-anki-language-samples/data/Sentence pairs in Japanese-English - 2022-10-26.txt"
 jp_fr = r"../script-anki-language-samples/data/Sentence pairs in Japanese-French - 2022-10-27.txt"
 jp_sp = r"../script-anki-language-samples/data/Sentence pairs in Japanese-Spanish - 2022-10-27.txt"
