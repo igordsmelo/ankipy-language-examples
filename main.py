@@ -1,7 +1,7 @@
 from anki_language_samples.utils.anki_sentences import filter_note_by_tag, edit_anki_note
 from anki_language_samples.utils.url_requests import search_notes
 
-
+a = 'test'
 def main():
     queries = ["deck:Default::Downloaded::JLPT::N5",
                "deck:Default::Downloaded::JLPT::N4",
