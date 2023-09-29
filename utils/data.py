@@ -1,5 +1,5 @@
-# from formatting import split_example
-# from script_ankilangsamples.utils import anki_sentences
+from WIP.script_ankilangsamples.utils.formatting import split_example
+from WIP.script_ankilangsamples.utils import anki_sentences
 
 # TODO: get data from tatoeba if not found
 # TODO: Fix relative path

@@ -1,8 +1,8 @@
 import time
 
-from data import jp_en, get_examples
-from formatting import remove_fromtext
-from text_and_speech import text_to_speech
+from WIP.script_ankilangsamples.utils.data import jp_en, get_examples
+from WIP.script_ankilangsamples.utils.formatting import remove_fromtext
+from WIP.script_ankilangsamples.utils.text_and_speech import text_to_speech
 from url_requests import update_note, add_tag
 
 ############################################################ performance analysis.
