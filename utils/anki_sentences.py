@@ -11,6 +11,8 @@ counter = time.time()
 
 def count(func_took='function took'):
     print(f'{func_took}: {time.time() - counter}')
+
+
 ############################################################
 
 
@@ -31,13 +33,11 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence',
         a = remove_fromtext(l, remove_furigana=False)  # a has furigana
         ###########################################################################
 
-        updated_fields = {}  # dict containing all edits
-        updated_fields[sentence_field] = examples[0].replace(l, f"<span class='AnkiPy'>{a}</span>") # JP Phrase
-        updated_fields[translation_field] = examples[1]  # EN Phrase
-        updated_fields[language] = a
-        updated_fields[translation_field] = examples[1]
+        updated_fields = {sentence_field: examples[0].replace(l, f"<span class='AnkiPy'>{a}</span>"),
+                          translation_field: examples[1], language: a}  # dict containing all edits
 
-        sf = sf.replace('<span class="AnkiPy">','').replace('</span>','').replace(l,f"<span class='AnkiPy'>{l}</span>")
+        sf = (sf.replace('<span class="AnkiPy">', '')
+              .replace('</span>', '').replace(l, f"<span class='AnkiPy'>{l}</span>"))
         updated_fields['Sentence'] = sf
         pth = r"C:\Users\Igor\AppData\Roaming\Anki2\User 1\collection.media"
         updated_fields[audio_field] = f'[sound:{text_to_speech(examples[0], pth)}]'
@@ -49,10 +49,11 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence',
         ########################################################################
         count(f'{l} changed')
         print(f'############################################################')
-    except :
+    except Exception as e:
+        print(e)
         count('edit attempt failed')
         add_tag(card['noteId'], 'AnkiPyNoExample')  # invoke('addTags', notes=[ID, ID], tags='AnkiPy')
-        #print(f'{l} examples not found')
+        # print(f'{l} examples not found')
         pass
 
 
@@ -63,5 +64,3 @@ def filter_note_by_tag(notes, include=None, exclude=None):
     if exclude:
         filtered_notes = [n for n in notes if exclude not in n['tags']]
     return filtered_notes
-
-

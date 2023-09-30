@@ -1,5 +1,5 @@
-from anki_language_samples.utils.anki_sentences import filter_note_by_tag, edit_anki_note
-from anki_language_samples.utils.url_requests import search_notes
+from WIP.script_ankilangsamples.utils.anki_sentences import filter_note_by_tag, edit_anki_note
+from WIP.script_ankilangsamples.utils.url_requests import search_notes
 
 a = 'test'
 def main():
