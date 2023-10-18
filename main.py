@@ -7,8 +7,8 @@ a = 'test'
 def main(query: str or list, target_sentence_field: str = 'Japanese'):
     """
     Adds example sentences to cards in deck.
-    :param query:
-    :param target_sentence_field:
+    :param query: what to search for. In Anki terms.
+    :param target_sentence_field: field where phrases will be stored.
     """
     queries = str(query) if type(query) == str else query
     for q in queries:  # individual query terms
