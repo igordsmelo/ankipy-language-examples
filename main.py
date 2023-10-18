@@ -1,8 +1,6 @@
 from WIP.script_ankilangsamples.utils.anki_sentences import filter_note_by_tag, edit_anki_note
 from WIP.script_ankilangsamples.utils.url_requests import search_notes
 
-a = 'test'
-
 
 def main(query: str or list, target_sentence_field: str = 'Japanese'):
     """
@@ -17,7 +15,7 @@ def main(query: str or list, target_sentence_field: str = 'Japanese'):
         print(f'there are {len(notes)} notes to edit')
         for note in notes:  # individual notes
             edit_anki_note(note, language='Expression', sentence_field=target_sentence_field)  # starts editing it
-        print(f'finished fucking {q}')
+        print(f'finished notes matching query: "{q}"')
 
 
 queries = ["deck:Default::Downloaded::JLPT::N5",
