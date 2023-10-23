@@ -2,6 +2,7 @@ from WIP.script_ankilangsamples.utils.anki_sentences import filter_note_by_tag, 
 from WIP.script_ankilangsamples.utils.url_requests import search_notes
 
 
+# TODO: find out what this function does.
 def main(query: str or list, target_sentence_field: str = 'Japanese'):
     """
     Adds example sentences to cards in deck.
