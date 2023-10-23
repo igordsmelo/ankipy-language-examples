@@ -18,10 +18,10 @@ def main(query: str or list, target_sentence_field: str = 'Japanese'):
         print(f'finished notes matching query: "{q}"')
 
 
-queries = ["deck:Default::Downloaded::JLPT::N5",
-           "deck:Default::Downloaded::JLPT::N4",
-           "deck:Default::Downloaded::JLPT::N3",
-           "deck:Default::Downloaded::JLPT::N2",
-           "deck:Default::Downloaded::JLPT::N1"]
+search_queries = ["deck:Default::Downloaded::JLPT::N5",
+                  "deck:Default::Downloaded::JLPT::N4",
+                  "deck:Default::Downloaded::JLPT::N3",
+                  "deck:Default::Downloaded::JLPT::N2",
+                  "deck:Default::Downloaded::JLPT::N1"]
 if __name__ == '__main__':
-    main(queries)
+    main(search_queries)
