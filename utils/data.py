@@ -14,6 +14,10 @@ jp_cn = r"../script-anki-language-samples/data/Sentence pairs in Japanese-Mandar
 
 
 ############################################################
+# a = r"../data/Sentence pairs in Japanese-English - 2022-10-26.txt"
+# database = open(a, encoding="utf8").readlines()
+
+
 
 def get_examples(word, database, word_limit=None, shuffle=False):
     """Reads text file containing sentences with translation."""
