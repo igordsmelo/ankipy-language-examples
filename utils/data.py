@@ -36,4 +36,4 @@ def get_examples(word, database, word_limit=None, shuffle=False):
 
 
 # SIMPLE TEST:
-#a = get_examples('hi', jp_en)
+a = get_examples('hi', jp_en)
