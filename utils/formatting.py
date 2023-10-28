@@ -1,13 +1,14 @@
-import time
 from os import path
+import re  # IMPORTS REGEX MODULE
 
+from utils import count
 from utils.text_and_speech import text_to_speech
 from utils.anki_requests import update_note, add_tag
 
 
 def remove_from_text(text, remove=("&nbsp;", "<rt>.*?</rt>", "<rubytitle=.*?>", "<.*?>"), remove_furigana=True):
     """removes parts of the text from string using regex"""
-    import re  # IMPORTS REGEX MODULE
+
     text = text.replace("<rt>", "[").replace("</rt>", "]")
     replace = []
     if len(remove) > 0:
@@ -66,6 +67,3 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence',
         pass
 
 
-counter = time.time()
-def count(func_took='function took'):
-    print(f'{func_took}: {time.time() - counter}')
