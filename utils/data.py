@@ -1,7 +1,4 @@
-from WIP.script_ankilangsamples.utils.formatting import split_example
-from WIP.script_ankilangsamples.utils import anki_sentences
-from random import shuffle
-
+from utils.formatting import split_example
 
 jp_en = r"data/Sentence pairs in Japanese-English - 2022-10-26.txt"
 jp_fr = r"data/Sentence pairs in Japanese-French - 2022-10-27.txt"

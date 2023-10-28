@@ -1,7 +1,6 @@
 import time
 from os import path
 
-from utils.data import get_sentence_examples, jp_en
 from utils.text_and_speech import text_to_speech
 from utils.anki_requests import update_note, add_tag
 
@@ -37,6 +36,7 @@ def edit_anki_note(card, language='Word', sentence_field='Sentence',
     sf = card['fields'][sentence_field]['value']
     print(f'sf = {sf}')
     try:
+        from utils.data import get_sentence_examples, jp_en
         # print(f"{language}:{l} \n {baselanguage}: {bl} \n {sentence_field}:{sf}")
         l = remove_from_text(l)  # l is a clean string
         # GETTING MORE LANGUAGE EXAMPLES IN IT ####################################

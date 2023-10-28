@@ -1,4 +1,4 @@
-from WIP.script_ankilangsamples.utils import anki_requests
+from utils import anki_requests
 
 SIX_K = anki_requests.search_notes("tag:Languages::Japanese::Core6K")
 MAIN = anki_requests.search_notes("tag:Languages::Japanese::Main")
