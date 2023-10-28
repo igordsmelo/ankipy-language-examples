@@ -1,3 +1,4 @@
+from utils.anki_requests import filter_note_by_tag
 from utils.formatting import edit_anki_note
 from WIP.script_ankilangsamples.utils.anki_requests import search_notes
 
@@ -24,14 +25,8 @@ search_queries = ["deck:Default::Downloaded::JLPT::N5",
                   "deck:Default::Downloaded::JLPT::N3",
                   "deck:Default::Downloaded::JLPT::N2",
                   "deck:Default::Downloaded::JLPT::N1"]
+
 if __name__ == '__main__':
     main(search_queries)
 
 
-def filter_note_by_tag(notes, include=None, exclude=None):
-    filtered_notes = notes
-    if include:
-        filtered_notes = [n for n in notes if include in n['tags']]
-    if exclude:
-        filtered_notes = [n for n in notes if exclude not in n['tags']]
-    return filtered_notes

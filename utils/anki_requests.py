@@ -7,9 +7,8 @@ def request(action, **params):
 
 
 def invoke(action, **params):
-
-    requestJson = json.dumps(request(action, **params)).encode('utf-8')
-    response = json.load(urllib.request.urlopen(urllib.request.Request('http://localhost:8765', requestJson)))
+    request_json = json.dumps(request(action, **params)).encode('utf-8')
+    response = json.load(urllib.request.urlopen(urllib.request.Request('http://localhost:8765', request_json)))
     if len(response) != 2:
         raise Exception('response has an unexpected number of fields')
     if 'error' not in response:
@@ -43,3 +42,12 @@ def update_note(note_ID, update_dict):
 
 def add_tag(note_ID, tag):
     invoke('addTags', notes=[note_ID], tags=tag)
+
+
+def filter_note_by_tag(notes, include=None, exclude=None):
+    filtered_notes = notes
+    if include:
+        filtered_notes = [n for n in notes if include in n['tags']]
+    if exclude:
+        filtered_notes = [n for n in notes if exclude not in n['tags']]
+    return filtered_notes
