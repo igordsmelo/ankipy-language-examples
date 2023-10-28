@@ -1,8 +1,8 @@
 from WIP.script_ankilangsamples.utils.formatting import split_example
 from WIP.script_ankilangsamples.utils import anki_sentences
+from random import shuffle
 
-# TODO: get data from tatoeba if not found
-# TODO: Fix relative path
+
 jp_en = r"data/Sentence pairs in Japanese-English - 2022-10-26.txt"
 jp_fr = r"data/Sentence pairs in Japanese-French - 2022-10-27.txt"
 jp_sp = r"data/Sentence pairs in Japanese-Spanish - 2022-10-27.txt"
@@ -13,9 +13,9 @@ jp_ge = r"data/Sentence pairs in Japanese-German - 2022-10-27.txt"
 jp_cn = r"data/Sentence pairs in Japanese-Mandarin Chinese - 2022-10-27.txt"
 
 ###########################################################
-# database = open(a, encoding="utf8").readlines()
 
-def get_examples(word: str, database: str, word_limit=None, shuffle=False) -> list:
+
+def get_sentence_examples(word: str, database: str, word_limit=None, shuffle=False) -> list:
     """
     Returns example sentences, with a specific word, from one of the databases in 'data' folder.
     :param word: word that'll be searched for in the database. Returns phrases and translations with said word.
@@ -23,9 +23,9 @@ def get_examples(word: str, database: str, word_limit=None, shuffle=False) -> li
     :param word_limit: how many words each example can have.
     :param shuffle: shuffle list, to avoid reusing the same words over and over again.
     :return: a list, with lists, each containing a sentence and it's translation.
-    >>> get_examples('computer', jp_en)
+    >>> get_sentence_examples('computer', jp_en)
     """
-    from random import shuffle
+
     try:
         database = open(database, encoding="utf8").readlines()
         shuffle(database) if shuffle else database.sort(key=len)  # shuffles sentences or sort them by length.
@@ -33,6 +33,6 @@ def get_examples(word: str, database: str, word_limit=None, shuffle=False) -> li
         return matching_sentences[0:word_limit + 1] if word_limit is not None else matching_sentences
     except FileNotFoundError:
         print('database not found. Download it from tatoeba.org or another site of your own choosing.')
-        dtbs = input('add path to database. \n')
-        get_examples(word, dtbs)
+        db = input('add path to database. \n')
+        get_sentence_examples(word, db)
 

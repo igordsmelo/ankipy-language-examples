@@ -47,5 +47,5 @@ def match_translation(og_txt, eng_translation):
 
 
 # match_translation('東京へ行くのに２時間かかった', 'It took two hours to go to Tokyo')  # test
-# abc = get_examples('clean', jp_en)
+# abc = get_sentence_examples('clean', jp_en)
 # grammar = match_translation(abc[1][0], abc[1][1])

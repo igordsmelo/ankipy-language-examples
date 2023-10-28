@@ -1,7 +1,7 @@
-from WIP.script_ankilangsamples.utils import url_requests
+from WIP.script_ankilangsamples.utils import anki_requests
 
-SIX_K = url_requests.search_notes("tag:Languages::Japanese::Core6K")
-MAIN = url_requests.search_notes("tag:Languages::Japanese::Main")
+SIX_K = anki_requests.search_notes("tag:Languages::Japanese::Core6K")
+MAIN = anki_requests.search_notes("tag:Languages::Japanese::Main")
 
 print('anki checked')
 six_k = {notes['fields']['Word']['value']: notes['noteId'] for notes in SIX_K}
@@ -17,7 +17,7 @@ for d in duplicate:
     main_note_ntags = [tags for tags in main_note['tags'] if 'Languages::Japanese::JLPT::N' in tags]
     for tags in main_note_ntags:
         print(f'adding "{tags}"')
-        url_requests.add_tag(six_k_note['noteId'], tags)
+        anki_requests.add_tag(six_k_note['noteId'], tags)
 
 # #########################################################################
 # duplicates = {"Languages::Japanese::JLPT::N5":'',
@@ -34,7 +34,7 @@ for d in duplicate:
 # for tags in duplicates:
 #     duplicates[tags] = duplicates[tags].split()
 #     id_list = [int(ids) for ids in duplicates[tags]]
-#     url_requests.add_tag(id_list, tags)
+#     anki_requests.add_tag(id_list, tags)
 #     print(f"tag: {tags}, added to: \n {duplicates[tags]} \n\n\n\n\n\n")
 #
 # #########################################################################
