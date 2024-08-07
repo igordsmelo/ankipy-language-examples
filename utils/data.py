@@ -1,20 +1,20 @@
 from utils.formatting import split_example
 
-jp_en = r"data/Japanese-English.txt"
-jp_fr = r"data/Japanese-French.txt"
-jp_sp = r"data/Japanese-Spanish.txt"
-jp_kr = r"data/Japanese-Korean.txt"
-jp_pt = r"data/Japanese-Portuguese.txt"
-jp_es = r"data/Japanese-Esperanto.txt"
-jp_ge = r"data/Japanese-German.txt"
-jp_cn = r"data/Japanese-MandarinChinese.txt"
+jp_en = r"ui/Japanese-English.txt"
+jp_fr = r"ui/Japanese-French.txt"
+jp_sp = r"ui/Japanese-Spanish.txt"
+jp_kr = r"ui/Japanese-Korean.txt"
+jp_pt = r"ui/Japanese-Portuguese.txt"
+jp_es = r"ui/Japanese-Esperanto.txt"
+jp_ge = r"ui/Japanese-German.txt"
+jp_cn = r"ui/Japanese-MandarinChinese.txt"
 
 ###########################################################
 
 
 def get_sentence_examples(word: str, database: str, word_limit: int = None, shuffle: bool = False) -> list:
     """
-    Returns example sentences, with a specific word, from one of the databases in 'data' folder.
+    Returns example sentences, with a specific word, from one of the databases in 'ui' folder.
     :param word: word that'll be searched for in the database. Returns phrases and translations with said word.
     :param database: database to get the examples from
     :param word_limit: how many words each example can have.
